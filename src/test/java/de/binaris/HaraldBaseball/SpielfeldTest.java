@@ -30,8 +30,7 @@ class SpielfeldTest {
 		feld.laufeZurNaechstenBase();
 
 		verify(sehen, times(5)).sehen();
-		verify(laufen, times(4)).lauf(anyInt());
-		verify(sehen, times(1)).augenZu();
+		verify(laufen, times(5)).lauf(anyInt());
 	}
 
 	@Test
@@ -72,7 +71,7 @@ class SpielfeldTest {
 		order.verify(sehen).sehen();
 		order.verify(laufen).lauf(anyInt());
 		order.verify(sehen).sehen();
-		order.verify(sehen).augenZu();
+		order.verify(laufen).lauf(anyInt());
 	}
 	
 	@Test
@@ -85,6 +84,9 @@ class SpielfeldTest {
 		Spielfeld feld = new Spielfeld(laufen, sehen, drehen);
 
 		assertThrows(IllegalArgumentException.class, () -> feld.laufeBases(5));
+
+		// Er darf nicht sehen aufgerufen haben!
+		verify(sehen, never()).sehen();
 	}
 
 	@Test
@@ -97,7 +99,10 @@ class SpielfeldTest {
 		Spielfeld feld = new Spielfeld(laufen, sehen, drehen);
 		
 		assertThrows(IllegalArgumentException.class, () -> feld.laufeBases(0));
-	}
+
+		// Er darf nicht sehen aufgerufen haben!
+		verify(sehen, never()).sehen();
+}
 
 	@Test
 	void testeHomeRunFalscherStart() {
@@ -134,6 +139,7 @@ class SpielfeldTest {
 		order.verify(sehen).sehen();
 		order.verify(laufen).lauf(anyInt());
 		order.verify(sehen).sehen();
+		order.verify(laufen).lauf(anyInt());
 		order.verify(drehen).dreheLinks();
 		
 		// 2. Schritt
@@ -142,6 +148,7 @@ class SpielfeldTest {
 		order.verify(sehen).sehen();
 		order.verify(laufen).lauf(anyInt());
 		order.verify(sehen).sehen();
+		order.verify(laufen).lauf(anyInt());
 		order.verify(drehen).dreheLinks();
 		
 		// 3. Schritt
@@ -150,6 +157,7 @@ class SpielfeldTest {
 		order.verify(sehen).sehen();
 		order.verify(laufen).lauf(anyInt());
 		order.verify(sehen).sehen();
+		order.verify(laufen).lauf(anyInt());
 		order.verify(drehen).dreheLinks();
 		
 		// 4. Schritt
@@ -158,6 +166,7 @@ class SpielfeldTest {
 		order.verify(sehen).sehen();
 		order.verify(laufen).lauf(anyInt());
 		order.verify(sehen).sehen();
+		order.verify(laufen).lauf(anyInt());
 		order.verify(drehen).dreheLinks();
 		
 	}

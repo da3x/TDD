@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 class SpielfeldIntegrationTest extends HaraldIntegrationTest {
 
 	@Test
-	void testeEffizienz() throws NotOnBaseException, IchWeissNichtWoIchBinException, NoPilotException {
+	void testeEineBase() throws NotOnBaseException, IchWeissNichtWoIchBinException, NoPilotException {
 		Spielfeld feld = new Spielfeld(new Laufen(pilot), new Sehen(sample));
 		feld.laufeZurNaechstenBase();
 	}

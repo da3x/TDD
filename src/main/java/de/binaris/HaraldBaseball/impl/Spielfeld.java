@@ -6,6 +6,7 @@ import lejos.robotics.Color;
 
 public class Spielfeld {
 
+	private static final int MAX_TRIES = 20;
 	private static final int STEP = 5;
 
 	private final Laufen laufen;
@@ -24,53 +25,58 @@ public class Spielfeld {
 		this.drehen = drehen;
 	}
 
-	private static final int MAX_TRIES = 100;
-
 	public void laufeZurNaechstenBase() throws NotOnBaseException, IchWeissNichtWoIchBinException {
+		System.out.println("Spielfeld.laufeZurNaechstenBase()");
 
 		int count = 0;
 
-		try {
-
-			int c = sehen.sehen();
-			if (c != Color.YELLOW)
-				throw new NotOnBaseException("Der Bot muss auf einer gelben Base starten!");
-
-			// Erst mal laufen wir von der Base runter!
-			do {
-				count++;
-				if (count > MAX_TRIES)
-					throw new IchWeissNichtWoIchBinException(
-							"Ich konnte meine Start-Base nicht verlassen und gebe auf!");
-
-				laufen.lauf(5);
-				c = sehen.sehen();
-			} while (c == Color.YELLOW);
-
-			// Erst mal laufen wir auf die nächste Base rauf!
-			do {
-				count++;
-				if (count > MAX_TRIES)
-					throw new IchWeissNichtWoIchBinException("Ich konnte die Ziel-Base nicht finden und gebe auf!");
-
-				laufen.lauf(STEP);
-				c = sehen.sehen();
-			} while (c != Color.YELLOW);
-
-		} finally {
+		int c = sehen.sehen();
+		if (c != Color.YELLOW) {
 			sehen.augenZu();
+			throw new NotOnBaseException("Der Bot muss auf einer gelben Base starten!");
 		}
+		
+		// Erst mal laufen wir von der Base runter!
+		do {
+			count++;
+			if (count > MAX_TRIES) {
+				sehen.augenZu();
+				throw new IchWeissNichtWoIchBinException("Ich konnte meine Start-Base nicht verlassen und gebe auf!");
+			}
+
+			laufen.lauf(5);
+			c = sehen.sehen();
+		} while (c == Color.YELLOW);
+
+		// Erst mal laufen wir auf die nächste Base rauf!
+		do {
+			count++;
+			if (count > MAX_TRIES) {
+				sehen.augenZu();
+				throw new IchWeissNichtWoIchBinException("Ich konnte die Ziel-Base nicht finden und gebe auf!");
+			}
+
+			laufen.lauf(STEP);
+			c = sehen.sehen();
+		} while (c != Color.YELLOW);
+
+		// Auf die Mitte laufen!
+		laufen.lauf(12); // dirty
+
 	}
 
 	public void laufeBases(int i) throws NotOnBaseException, IchWeissNichtWoIchBinException {
+		System.out.println("Spielfeld.laufeBases()");
+
 		if (i < 1 || i > 4)
 			throw new IllegalArgumentException("Harald will nur 1-4 Bases laufen... der ist faul!");
 
 		for (int n = 0; n < i; n++) {
 			laufeZurNaechstenBase();
 			drehen.dreheLinks();
+			laufen.lauf(-8);
 		}
-		
+
 	}
 
 }

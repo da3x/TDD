@@ -24,7 +24,7 @@ public class HaraldIntegrationTest {
 	@AfterEach
 	void tearDown() {
 		System.out.println("HaraldIntegrationTest.tearDown()");
-		if (BotEV3.getBrick() != null)
-			BotEV3.createSampleProvider().close();
+		sample.close();
+		BotEV3.shutDown();
 	}
 }

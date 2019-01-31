@@ -13,11 +13,13 @@ public class Drehen {
 	}
 
 	public void dreheLinks() {
-		pilot.rotate(90);
+		System.out.println("Drehen.dreheLinks()");
+		pilot.rotate(-86); // 4° weniger...
 	}
 
 	public void dreheRechts() {
-		pilot.rotate(-90);
+		System.out.println("Drehen.dreheRechts()");
+		pilot.rotate(90);
 	}
 	
 }

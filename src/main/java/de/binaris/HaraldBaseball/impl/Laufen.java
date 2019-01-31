@@ -13,6 +13,7 @@ public class Laufen {
 	}
 
 	public void lauf(int i) {
+		System.out.println("Laufen.lauf()");
 		pilot.travel(i);
 	}
 

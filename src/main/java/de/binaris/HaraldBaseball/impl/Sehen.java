@@ -12,12 +12,14 @@ public class Sehen {
 	}
 
 	public int sehen() {
+		System.out.println("Sehen.sehen()");
 		float[] data = new float[10];
 		sample.fetchSample(data, 0);
 		return (int) data[0];
 	}
 
 	public void augenZu() {
+		System.out.println("Sehen.augenZu()");
 		sample.close();
 	}
 
