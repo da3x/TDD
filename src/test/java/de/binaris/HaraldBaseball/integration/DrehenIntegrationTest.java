@@ -11,21 +11,22 @@ import org.junit.jupiter.api.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import de.binaris.HaraldBaseball.errors.NoPilotException;
+import de.binaris.HaraldBaseball.impl.Drehen;
 import de.binaris.HaraldBaseball.impl.Sehen;
 import de.binaris.HaraldBaseball.integration.common.HaraldIntegrationTest;
 import lejos.remote.ev3.RemoteRequestSampleProvider;
 import lejos.robotics.Color;
 import robot.BotEV3;
 
-class SehenIntegrationTest extends HaraldIntegrationTest {
+class DrehenIntegrationTest extends HaraldIntegrationTest {
 
 	@Test
-	void testeSehenGelb() {
-		Sehen sehen = new Sehen(this.sample);
-		
-		int c = sehen.sehen();
-		sehen.augenZu();
+	void testeSehenGelb() throws NoPilotException {
 
-		assertTrue(c == Color.YELLOW);
+		Drehen drehen = new Drehen(pilot);
+
+		drehen.dreheLinks();
+		drehen.dreheRechts();
 	}
 }
