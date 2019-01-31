@@ -24,7 +24,7 @@ class DrehenTest {
 		Drehen drehen = new Drehen(pilot);
 		drehen.dreheLinks();
 
-		verify(pilot, times(1)).rotate(90);
+		verify(pilot, times(1)).rotate(-86);
 	}
 
 	@Test
@@ -34,6 +34,6 @@ class DrehenTest {
 		Drehen drehen = new Drehen(pilot);
 		drehen.dreheRechts();
 
-		verify(pilot, times(1)).rotate(-90);
+		verify(pilot, times(1)).rotate(90);
 	}
 }

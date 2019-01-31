@@ -49,4 +49,14 @@ class SehenTest {
 
 	}
 
+	@Test
+	void tesetAugenZu() {
+        RemoteRequestSampleProvider sample = mock(RemoteRequestSampleProvider.class);
+
+        Sehen sehen = new Sehen(sample);
+        sehen.augenZu();
+
+        // Behavior...
+        verify(sample, times(1)).close();
+	}
 }

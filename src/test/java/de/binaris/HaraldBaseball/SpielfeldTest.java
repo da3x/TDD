@@ -26,7 +26,7 @@ class SpielfeldTest {
 
 		when(sehen.sehen()).thenReturn(Color.YELLOW, Color.BROWN, Color.RED, Color.BROWN, Color.YELLOW);
 
-		Spielfeld feld = new Spielfeld(laufen, sehen);
+		Spielfeld feld = new Spielfeld(laufen, sehen, null);
 		feld.laufeZurNaechstenBase();
 
 		verify(sehen, times(5)).sehen();
@@ -41,7 +41,7 @@ class SpielfeldTest {
 		
 		when(sehen.sehen()).thenReturn(Color.YELLOW, Color.BROWN, Color.RED);
 		
-		Spielfeld feld = new Spielfeld(laufen, sehen);
+		Spielfeld feld = new Spielfeld(laufen, sehen, null);
 
 		// Er muss abbrechen!
 		assertThrows(IchWeissNichtWoIchBinException.class, () -> feld.laufeZurNaechstenBase());
@@ -58,7 +58,7 @@ class SpielfeldTest {
 		
 		when(sehen.sehen()).thenReturn(Color.YELLOW, Color.BROWN, Color.RED, Color.BROWN, Color.YELLOW);
 		
-		Spielfeld feld = new Spielfeld(laufen, sehen);
+		Spielfeld feld = new Spielfeld(laufen, sehen, null);
 		feld.laufeZurNaechstenBase();
 		
 		InOrder order = inOrder(sehen, laufen);

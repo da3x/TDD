@@ -8,7 +8,7 @@ import lejos.remote.ev3.RemoteRequestPilot;
 import lejos.remote.ev3.RemoteRequestSampleProvider;
 import robot.BotEV3;
 
-public class HaraldIntegrationTest {
+public class BaseIntegrationTest {
 
 	protected RemoteRequestSampleProvider sample;
 	protected RemoteRequestPilot pilot;

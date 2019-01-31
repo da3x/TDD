@@ -12,12 +12,12 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import de.binaris.HaraldBaseball.impl.Sehen;
-import de.binaris.HaraldBaseball.integration.common.HaraldIntegrationTest;
+import de.binaris.HaraldBaseball.integration.common.BaseIntegrationTest;
 import lejos.remote.ev3.RemoteRequestSampleProvider;
 import lejos.robotics.Color;
 import robot.BotEV3;
 
-class SehenIntegrationTest extends HaraldIntegrationTest {
+class SehenIntegrationTest extends BaseIntegrationTest {
 
 	@Test
 	void testeSehenGelb() {

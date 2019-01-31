@@ -13,12 +13,6 @@ public class Spielfeld {
 	private final Sehen sehen;
 	private final Drehen drehen;
 
-	public Spielfeld(Laufen laufen, Sehen sehen) {
-		this.laufen = laufen;
-		this.sehen = sehen;
-		this.drehen = null;
-	}
-
 	public Spielfeld(Laufen laufen, Sehen sehen, Drehen drehen) {
 		this.laufen = laufen;
 		this.sehen = sehen;

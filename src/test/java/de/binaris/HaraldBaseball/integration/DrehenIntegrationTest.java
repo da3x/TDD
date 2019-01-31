@@ -14,12 +14,12 @@ import org.mockito.stubbing.Answer;
 import de.binaris.HaraldBaseball.errors.NoPilotException;
 import de.binaris.HaraldBaseball.impl.Drehen;
 import de.binaris.HaraldBaseball.impl.Sehen;
-import de.binaris.HaraldBaseball.integration.common.HaraldIntegrationTest;
+import de.binaris.HaraldBaseball.integration.common.BaseIntegrationTest;
 import lejos.remote.ev3.RemoteRequestSampleProvider;
 import lejos.robotics.Color;
 import robot.BotEV3;
 
-class DrehenIntegrationTest extends HaraldIntegrationTest {
+class DrehenIntegrationTest extends BaseIntegrationTest {
 
 	@Test
 	void testeSehenGelb() throws NoPilotException {
