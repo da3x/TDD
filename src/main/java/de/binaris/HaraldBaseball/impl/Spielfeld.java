@@ -14,11 +14,12 @@ public class Spielfeld {
 		this.sehen = sehen;
 	}
 
+	private static final int MAX_TRIES = 100;
+
 	public void laufeZurNaechstenBase() throws NotOnBaseException, IchWeissNichtWoIchBinException {
 
 		int count = 0;
-		int max = 100;
-		
+
 		try {
 			int c = sehen.sehen();
 			if (c != Color.YELLOW)
@@ -27,8 +28,10 @@ public class Spielfeld {
 			// Erst mal laufen wir von der Base runter!
 			do {
 				count++;
-				if (count > max) throw new IchWeissNichtWoIchBinException("Ich konnte meine Start-Base nicht verlassen und gebe auf!");
-				
+				if (count > MAX_TRIES)
+					throw new IchWeissNichtWoIchBinException(
+							"Ich konnte meine Start-Base nicht verlassen und gebe auf!");
+
 				laufen.lauf(5);
 				c = sehen.sehen();
 			} while (c == Color.YELLOW);
@@ -36,13 +39,13 @@ public class Spielfeld {
 			// Erst mal laufen wir auf die nächste Base rauf!
 			do {
 				count++;
-				if (count > max) throw new IchWeissNichtWoIchBinException("Ich konnte die Ziel-Base nicht finden und gebe auf!");
+				if (count > MAX_TRIES)
+					throw new IchWeissNichtWoIchBinException("Ich konnte die Ziel-Base nicht finden und gebe auf!");
 
 				laufen.lauf(5);
 				c = sehen.sehen();
 			} while (c != Color.YELLOW);
-		}
-		finally {
+		} finally {
 			sehen.augenZu();
 		}
 	}
