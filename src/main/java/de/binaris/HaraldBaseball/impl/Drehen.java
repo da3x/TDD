@@ -14,12 +14,12 @@ public class Drehen {
 
 	public void dreheLinks() {
 		System.out.println("Drehen.dreheLinks()");
-		pilot.rotate(-86); // 4° weniger...
+		pilot.rotate(-85); // 5° weniger...
 	}
 
 	public void dreheRechts() {
 		System.out.println("Drehen.dreheRechts()");
-		pilot.rotate(90);
+		pilot.rotate(85); // 5° weniger...
 	}
 	
 }

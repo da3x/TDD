@@ -22,11 +22,33 @@ import robot.BotEV3;
 class DrehenIntegrationTest extends BaseIntegrationTest {
 
 	@Test
-	void testeSehenGelb() throws NoPilotException {
+	void testeDrehen() throws NoPilotException {
 
 		Drehen drehen = new Drehen(pilot);
 
 		drehen.dreheLinks();
 		drehen.dreheRechts();
+	}
+
+	@Test
+	void teste4xLinks() throws NoPilotException {
+	    
+	    Drehen drehen = new Drehen(pilot);
+	    
+	    drehen.dreheLinks();
+	    drehen.dreheLinks();
+	    drehen.dreheLinks();
+	    drehen.dreheLinks();
+	}
+
+	@Test
+	void teste4xRechts() throws NoPilotException {
+	    
+	    Drehen drehen = new Drehen(pilot);
+	    
+	    drehen.dreheRechts();
+	    drehen.dreheRechts();
+	    drehen.dreheRechts();
+	    drehen.dreheRechts();
 	}
 }
