@@ -16,7 +16,7 @@ public class BotEV3 {
 
     public static void createInstanceEV3() {
 
-        String EV3BRICK_IP = "192.168.189.111";
+        String EV3BRICK_IP = "192.168.189.110";
 
         try {
             ev3 = new RemoteRequestEV3(EV3BRICK_IP);

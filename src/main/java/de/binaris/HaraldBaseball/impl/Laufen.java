@@ -13,8 +13,15 @@ public class Laufen {
 	}
 
 	public void lauf(int i) {
-		System.out.println("Laufen.lauf()");
 		pilot.travel(i);
 	}
+
+    public void stop() {
+        if (pilot.isMoving()) pilot.stop();
+    }
+
+    public void fahren() {
+        if (!pilot.isMoving()) pilot.forward();
+    }
 
 }

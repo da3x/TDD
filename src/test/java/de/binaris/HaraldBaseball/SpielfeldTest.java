@@ -170,5 +170,53 @@ class SpielfeldTest {
 		order.verify(drehen).dreheLinks();
 		
 	}
-	
+
+    
+	@Test
+    void testBaseSuchenPositivEasy() throws IchWeissNichtWoIchBinException, InterruptedException {
+
+        Laufen laufen = mock(Laufen.class);
+        Sehen  sehen  = mock(Sehen.class);
+        Drehen drehen = mock(Drehen.class);
+        
+        when(sehen.sehen()).thenReturn(Color.YELLOW);
+        
+        Spielfeld feld = new Spielfeld(laufen, sehen, drehen);
+        feld.sucheBase();
+        
+        verify(sehen, atLeastOnce()).sehen();
+        verify(laufen, never()).lauf(anyInt());
+	}
+
+	@Test
+	void testBaseSuchenPositivMove() throws IchWeissNichtWoIchBinException, InterruptedException {
+	    
+	    Laufen laufen = mock(Laufen.class);
+	    Sehen  sehen  = mock(Sehen.class);
+	    Drehen drehen = mock(Drehen.class);
+	    
+	    when(sehen.sehen()).thenReturn(Color.BROWN, Color.GREEN, Color.YELLOW);
+	    
+	    Spielfeld feld = new Spielfeld(laufen, sehen, drehen);
+	    feld.sucheBase();
+	    
+        verify(sehen, times(3)).sehen();
+        verify(laufen, times(1)).lauf(anyInt());
+	}
+
+    @Test
+    void testBaseSuchenNegativ() throws IchWeissNichtWoIchBinException {
+
+        Laufen laufen = mock(Laufen.class);
+        Sehen  sehen  = mock(Sehen.class);
+        Drehen drehen = mock(Drehen.class);
+        
+        when(sehen.sehen()).thenReturn(Color.BROWN);
+        
+        Spielfeld feld = new Spielfeld(laufen, sehen, drehen);
+        
+        assertThrows(IchWeissNichtWoIchBinException.class, () -> feld.sucheBase());
+        verify(sehen, atLeastOnce()).sehen();
+    }
+
 }

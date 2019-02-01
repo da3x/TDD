@@ -11,31 +11,32 @@ import robot.BotEV3;
 
 public class BaseIntegrationTest {
 
-	protected RemoteRequestSampleProvider sample;
-	protected RemoteRequestPilot pilot;
+    protected RemoteRequestSampleProvider sample;
+    protected RemoteRequestPilot          pilot;
 
-	@BeforeEach
-	void setUp() {
-		BotEV3.createInstanceEV3();
-		System.out.println("HaraldIntegrationTest.setUp()");
-		this.sample = BotEV3.createSampleProvider();
-		this.pilot = BotEV3.createPilot();
-	}
+    @BeforeEach
+    void setUp() {
+        System.out.println("BaseIntegrationTest.setUp()");
+        BotEV3.createInstanceEV3();
+        this.sample = BotEV3.createSampleProvider();
+        this.pilot  = BotEV3.createPilot();
+    }
 
-	@AfterEach
-	void tearDown() {
-		System.out.println("HaraldIntegrationTest.tearDown()");
-		sample.close();
-		BotEV3.shutDown();
-	}
-	
-	@BeforeAll
-	static void init() {
-	    // 1x pro Test-Klasse – aber nur static
-	}
+    @AfterEach
+    void tearDown() {
+        System.out.println("BaseIntegrationTest.tearDown()");
+        if (pilot.isMoving()) pilot.stop();
+        sample.close();
+        BotEV3.shutDown();
+    }
 
-	@AfterAll
-	static void die() {
+    @BeforeAll
+    static void init() {
         // 1x pro Test-Klasse – aber nur static
-	}
+    }
+
+    @AfterAll
+    static void die() {
+        // 1x pro Test-Klasse – aber nur static
+    }
 }

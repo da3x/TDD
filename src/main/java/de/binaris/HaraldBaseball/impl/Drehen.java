@@ -21,5 +21,21 @@ public class Drehen {
 		System.out.println("Drehen.dreheRechts()");
 		pilot.rotate(85); // 5° weniger...
 	}
+
+    public void dreheLinks(int i) {
+        pilot.rotate(-i);
+    }
+
+    public void dreheRechts(int i) {
+        pilot.rotate(i);
+    }
+
+    public void fahreLinks(int i) {
+        pilot.arcForward(-i);
+    }
 	
+    public void fahreRechts(int i) {
+        pilot.arcForward(i);
+    }
+    
 }

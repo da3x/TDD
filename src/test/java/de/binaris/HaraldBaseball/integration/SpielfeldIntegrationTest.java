@@ -41,4 +41,10 @@ class SpielfeldIntegrationTest extends BaseIntegrationTest {
         feld.laufeBases(4);
     }
 
+    @Test
+    void testeSucheBase() throws NotOnBaseException, IchWeissNichtWoIchBinException, NoPilotException, InterruptedException {
+        Spielfeld feld = new Spielfeld(new Laufen(pilot), new Sehen(sample), new Drehen(pilot));
+        feld.sucheBase();
+    }
+    
 }
