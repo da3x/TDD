@@ -4,8 +4,13 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.internal.configuration.injection.MockInjection;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import de.binaris.HaraldBaseball.errors.IchWeissNichtWoIchBinException;
 import de.binaris.HaraldBaseball.errors.NoPilotException;
@@ -24,18 +29,24 @@ import lejos.remote.ev3.RemoteRequestSampleProvider;
 import static org.assertj.core.api.Assertions.*;
 
 // Die Reihenfolge der Tests ist nicht deterministisch... und das ist auch gut so!
+@ExtendWith(MockitoExtension.class) // für die @Mock
 class HaraldTest {
+
+    @Mock
+    Bewusstsein bewusstsein;
+    @Mock
+    Spielfeld   spielfeld;
+    @Mock
+    Zufall      zufall;
+
+    @InjectMocks
+    Harald harald;
 
     @Test
     void testeSpielHomeRun() throws NotOnBaseException, IchWeissNichtWoIchBinException {
 
-        Bewusstsein bewusstsein = mock(Bewusstsein.class);
-        Spielfeld   spielfeld   = mock(Spielfeld.class);
-        Zufall      zufall      = mock(Zufall.class);
-
         when(bewusstsein.abschlag(zufall)).thenReturn(Abschlag.HOMERUN);
 
-        Harald harald = new Harald(bewusstsein, spielfeld, zufall);
         harald.spiele();
 
         verify(bewusstsein, times(1)).abschlag(zufall);
@@ -44,16 +55,11 @@ class HaraldTest {
 
     @Test
     void testeSpielMies() throws NotOnBaseException, IchWeissNichtWoIchBinException {
-        
-        Bewusstsein bewusstsein = mock(Bewusstsein.class);
-        Spielfeld   spielfeld   = mock(Spielfeld.class);
-        Zufall      zufall      = mock(Zufall.class);
-        
+
         when(bewusstsein.abschlag(zufall)).thenReturn(Abschlag.MIES);
-        
-        Harald harald = new Harald(bewusstsein, spielfeld, zufall);
+
         harald.spiele();
-        
+
         verify(bewusstsein, times(1)).abschlag(zufall);
         verify(spielfeld, never()).laufeBases(anyInt());
     }

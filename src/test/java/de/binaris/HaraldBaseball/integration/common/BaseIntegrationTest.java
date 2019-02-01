@@ -1,5 +1,6 @@
 package de.binaris.HaraldBaseball.integration.common;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,5 +27,15 @@ public class BaseIntegrationTest {
 		System.out.println("HaraldIntegrationTest.tearDown()");
 		sample.close();
 		BotEV3.shutDown();
+	}
+	
+	@BeforeAll
+	static void init() {
+	    // 1x pro Test-Klasse – aber nur static
+	}
+
+	@AfterAll
+	static void die() {
+        // 1x pro Test-Klasse – aber nur static
 	}
 }
